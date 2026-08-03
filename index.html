@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>KunPeng-Hermes Fusion — 自进化硬件控制智能体</title>
-<meta name="description" content="全球首个 ARM64 嵌入式平台硬件控制+大模型+自进化学习+声纹+视觉六维融合 AI 智能体">
+<title>小鲲 KunPeng-Hermes — 居家检测陪护机器人</title>
+<meta name="description" content="小鲲居家检测陪护机器人：毫米波雷达生命体征监测 + WiFi 姿态感知 + 声纹语音交互 + 轮足底盘，无摄像头守护老人安全">
 <style>
 :root {
   --bg-dark: #0e0f0d; --bg-dark-2: #141512; --bg-section: #f5f7fa; --bg-card: #fff;
@@ -154,6 +154,7 @@ tbody tr:hover { background:rgba(76,242,212,.04) }
 .pill { display:inline-block; padding:3px 12px; border-radius:100px; font-size:.78rem; font-weight:600; white-space:nowrap }
 .pill-ok { background:rgba(16,185,129,.1); color:#059669 }
 .pill-todo { background:rgba(100,116,139,.08); color:#64748b }
+.pill-beta { background:rgba(245,158,11,.12); color:#b45309 }
 
 /* ── Roadmap ── */
 .roadmap { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:22px; position:relative }
@@ -223,13 +224,14 @@ tbody tr:hover { background:rgba(76,242,212,.04) }
       <svg viewBox="0 0 240 280"><defs><radialGradient id="b" cx="50%" cy="40%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#e8f4f8"/></radialGradient><linearGradient id="c" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4CF2D4"/><stop offset="1" stop-color="#E8F68F"/></linearGradient></defs><ellipse cx="120" cy="262" rx="50" ry="8" fill="#0a2440" opacity=".08"/><ellipse cx="115" cy="140" rx="62" ry="55" fill="url(#b)"/><ellipse cx="110" cy="150" rx="32" ry="28" fill="#f8fdfe" opacity=".7"/><path d="M60 148c-20 8-28 22-18 32 8 8 18 6 26-4z" fill="#d4eaf0"/><path d="M170 148c20 8 28 22 18 32-8 8-18 6-26-4z" fill="#d4eaf0"/><polygon points="113,88 120,78 127,88 120,96" fill="url(#c)"/><ellipse cx="96" cy="127" rx="8" ry="11" fill="#1e293b"/><ellipse cx="136" cy="127" rx="8" ry="11" fill="#1e293b"/><circle cx="99" cy="124" r="3" fill="#fff"/><circle cx="139" cy="124" r="3" fill="#fff"/><ellipse cx="78" cy="136" rx="12" ry="8" fill="rgba(255,179,179,.25)"/><ellipse cx="154" cy="136" rx="12" ry="8" fill="rgba(255,179,179,.25)"/><path d="M114 144q6 7 12 0" fill="none" stroke="#64748b" stroke-width="2.5" stroke-linecap="round"/></svg>
     </div>
     <div class="hero-eyebrow"><span class="pulse"></span>v2.3 稳定版 · MIT 开源</div>
-    <h1>为物理世界打造的<br><span>自进化 AI 智能体</span></h1>
-    <p class="sub">OrangePi Kunpeng Pro (RK3588) 上运行。能看、能听、能说、能学、能控制硬件。每一次硬件操作都在进化。</p>
+    <h1>居家老人的<br><span>无感检测 · 贴身陪护</span></h1>
+    <p class="sub">「小鲲」居家检测陪护机器人：毫米波雷达 + WiFi 感知 + 声纹语音 + 轮足底盘。不装摄像头，也能时刻守护老人安全。</p>
     <div class="badges">
-      <span class="badge bd-mint">声纹识别</span>
-      <span class="badge bd-lime">语音交互</span>
-      <span class="badge bd-glass">🎯 3 Skill</span>
-      <span class="badge bd-glass">六维融合</span>
+      <span class="badge bd-mint">雷达生命体征</span>
+      <span class="badge bd-lime">WiFi 姿态感知</span>
+      <span class="badge bd-lime">声纹识别</span>
+      <span class="badge bd-glass">语音交互</span>
+      <span class="badge bd-glass">MIT 开源</span>
     </div>
     <div class="actions">
       <a href="https://github.com/overdued/start_company" class="btn btn-prim">GitHub 源码</a>
@@ -252,15 +254,15 @@ tbody tr:hover { background:rgba(76,242,212,.04) }
 <section id="features" class="dark-section">
   <div class="container">
     <div class="section-label reveal">核心能力</div>
-    <h2 class="light reveal" data-delay="1">六大能力，一个智能体</h2>
-    <p class="section-desc reveal" data-delay="2">不是拼接，是深度融合。每个模块都经过端到端测试验证。</p>
+    <h2 class="light reveal" data-delay="1">无感监测 + 主动陪护，一个机器人</h2>
+    <p class="section-desc reveal" data-delay="2">雷达与 WiFi 负责"悄悄守护"，语音与声纹负责"随时陪伴"。每个模块都经过真实硬件验证。</p>
     <div class="cards">
-      <div class="card reveal"><span class="icon">🎤</span><h3>声纹识别</h3><p>CAM++ 192 维声纹向量，识别"谁在说话"。HK MIC 四通道采集，注册 / 验证 / 待定池机制。</p></div>
-      <div class="card reveal" data-delay="1"><span class="icon">🗣️</span><h3>全双工语音</h3><p>唤醒 + ASR + 对话 + TTS 全链路。SenseVoiceSmall 转写，edge-tts 自然语音播报。</p></div>
-      <div class="card reveal" data-delay="2"><span class="icon">📷</span><h3>真实视觉</h3><p>USB 摄像头 + Kimi k2 多模态 AI。所有图像描述来自真实硬件，绝不编造。</p></div>
-      <div class="card reveal"><span class="icon">🧠</span><h3>自进化 Skill</h3><p>每次硬件操作自动生成 SKILL.md。重复任务 2–3× 加速，Token 消耗降低 60%。</p></div>
-      <div class="card reveal" data-delay="1"><span class="icon">📋</span><h3>Memos 笔记</h3><p>8 种智能分类 + 用户画像聚合，离线 SQLite。客户需求追踪驱动产品迭代。</p></div>
-      <div class="card reveal" data-delay="2"><span class="icon">🔧</span><h3>硬件控制</h3><p>GPIO / I2C / UART / PWM 全栈 HAL，MCU 紧急停止。<code style="color:var(--mint)">control_car</code> / <code style="color:var(--mint)">control_arm</code> 已预留。</p></div>
+      <div class="card reveal"><span class="icon">💓</span><h3>雷达生命体征</h3><p>毫米波雷达非接触监测呼吸与心率，跌倒即时检测。无需佩戴任何设备，卧室也能用——不装摄像头，隐私零侵入。</p></div>
+      <div class="card reveal" data-delay="1"><span class="icon">📡</span><h3>WiFi 姿态感知</h3><p>利用 WiFi 信道状态信息识别人体姿态：坐姿、卧床、运动状态，支持多人场景。穿墙感知，全屋覆盖。</p></div>
+      <div class="card reveal" data-delay="2"><span class="icon">🎤</span><h3>声纹识别</h3><p>CAM++ 192 维声纹向量，分清老人、家属和陌生人。HK MIC 四通道采集，注册 / 验证 / 待定池机制。</p></div>
+      <div class="card reveal"><span class="icon">🗣️</span><h3>全双工语音</h3><p>唤醒 + ASR + 对话 + TTS 全链路。检测到异常时小鲲主动语音确认："您还好吗？"，无人应答即通知家属。</p></div>
+      <div class="card reveal" data-delay="1"><span class="icon">🧠</span><h3>自进化 Skill</h3><p>每次硬件操作自动生成 SKILL.md。重复任务 2–3× 加速，Token 消耗降低 60%。 Memos 笔记离线记录健康备忘。</p></div>
+      <div class="card reveal" data-delay="2"><span class="icon">🔧</span><h3>硬件控制</h3><p>GPIO / I2C / UART / PWM 全栈 HAL，MCU 紧急停止。轮足底盘自主移动，全屋巡检陪护。</p></div>
     </div>
   </div>
 </section>
@@ -272,7 +274,7 @@ tbody tr:hover { background:rgba(76,242,212,.04) }
     <h2 class="reveal" data-delay="1">硬件 + App + 桌宠，三端合一</h2>
     <p class="section-desc reveal" data-delay="2">同一个橘派服务器，手机 App、桌面宠物、Web 面板同时连接。</p>
     <div class="cards">
-      <div class="card reveal"><span class="icon">🤖</span><h3>轮足机器人</h3><p>橘派搭载于机器人平台，UART 连接 RT1064 MCU 控制双电机，支持前进 / 后退 / 转向 / 停止。</p><p class="meta" style="color:var(--teal)">App → WS:8765 → 橘派 → UART → RT1064 → 电机</p></div>
+      <div class="card reveal"><span class="icon">🤖</span><h3>轮足陪护机器人「小鲲」</h3><p>橘派搭载于轮足底盘，UART 连接 RT1064 MCU 控制双电机。全屋移动巡检，主动靠近老人进行语音确认与陪护。</p><p class="meta" style="color:var(--teal)">App → WS:8765 → 橘派 → UART → RT1064 → 电机</p></div>
       <div class="card reveal" data-delay="1"><span class="icon">📱</span><h3>Android App</h3><p>OctopusController v1.0.1，Kotlin 原生 WebView，离线 Mock + 橘派 WebSocket 双模式。</p><p class="meta" style="color:var(--muted)">最低 Android 6.0 · 横屏触控 · 电机 / 对话 / 提醒 / 健康 / 紧急</p></div>
       <div class="card reveal" data-delay="2"><span class="icon">🖥️</span><h3>桌面宠物</h3><p>Win / Mac / Linux 均可，Chrome 无边框窗口始终置顶，凭据隔离，5 表情 × 4 姿态可拖拽。</p><p class="meta" style="color:var(--muted)">neutral · warm · caring · uncertain · offline</p></div>
     </div>
@@ -296,8 +298,8 @@ tbody tr:hover { background:rgba(76,242,212,.04) }
       <div class="a-layer">
         <div class="a-tag"><div class="t-cn">AI 决策</div><div class="t-en">Intelligence</div></div>
         <div class="a-body"><div class="a-chips">
-          <span class="chip">🧠 三层记忆 + FTS5</span><span class="chip">🎯 Skill 自动创建</span><span class="chip">🔄 自进化引擎</span><span class="chip">📋 Memos 笔记</span>
-          <span class="chip">🎤 CAM++ 声纹</span><span class="chip">🗣️ SenseVoice + KWS</span><span class="chip">📷 Kimi k2 视觉</span><span class="chip">🔊 edge-tts 自然语音</span>
+          <span class="chip">💓 生命体征分析</span><span class="chip">📡 WiFi 姿态识别</span><span class="chip">🧠 三层记忆 + FTS5</span><span class="chip">🎯 Skill 自动创建</span>
+          <span class="chip">🔄 自进化引擎</span><span class="chip">📋 Memos 笔记</span><span class="chip">🎤 CAM++ 声纹</span><span class="chip">🗣️ SenseVoice + KWS</span><span class="chip">🔊 edge-tts 自然语音</span>
         </div></div>
       </div>
       <div class="a-arrow">↓</div>
@@ -313,10 +315,10 @@ tbody tr:hover { background:rgba(76,242,212,.04) }
         <div class="a-body">
           <div class="a-title"><b>OrangePi Kunpeng Pro</b> · RK3588 · 16GB</div>
           <div class="a-chips" style="margin-bottom:10px">
-            <span class="chip">📷 摄像头</span><span class="chip">🎤 4 通道 MIC</span><span class="chip">🔊 USB 扬声器</span><span class="chip">🔌 FT2232 UART ×2</span>
+            <span class="chip">💓 毫米波雷达</span><span class="chip">📡 WiFi CSI</span><span class="chip">📷 摄像头</span><span class="chip">🎤 4 通道 MIC</span><span class="chip">🔊 USB 扬声器</span><span class="chip">🔌 FT2232 UART ×2</span>
           </div>
           <div class="a-chips">
-            <span class="chip dim">毫米波雷达 · 预留</span><span class="chip dim">WiFi CSI · 预留</span><span class="chip dim">NPU 推理 · 预留</span>
+            <span class="chip dim">NPU 推理加速 · 预留</span>
           </div>
         </div>
       </div>
@@ -340,8 +342,8 @@ tbody tr:hover { background:rgba(76,242,212,.04) }
       <tr><td>GPIO</td><td>40 引脚</td><td>灯光 / 继电器</td><td><span class="pill pill-ok">✅ 就绪</span></td></tr>
       <tr><td>I2C</td><td>10 总线</td><td>OLED / IMU</td><td><span class="pill pill-ok">✅ 就绪</span></td></tr>
       <tr><td>UART</td><td>6 端口 + FT2232×2</td><td>MCU / 机械臂</td><td><span class="pill pill-ok">✅ 就绪</span></td></tr>
-      <tr><td>毫米波雷达</td><td>—</td><td>跌倒 / 存在感知</td><td><span class="pill pill-todo">🔲 预留</span></td></tr>
-      <tr><td>WiFi CSI</td><td>—</td><td>室内定位 / 穿墙</td><td><span class="pill pill-todo">🔲 预留</span></td></tr>
+      <tr><td>毫米波雷达</td><td>呼吸心跳检测模组</td><td>呼吸 / 心率 / 跌倒监测</td><td><span class="pill pill-beta">🔶 联调中</span></td></tr>
+      <tr><td>WiFi CSI</td><td>信道状态信息</td><td>姿态识别 / 多人检测</td><td><span class="pill pill-beta">🔶 联调中</span></td></tr>
       </tbody>
     </table>
     </div>
@@ -356,7 +358,7 @@ tbody tr:hover { background:rgba(76,242,212,.04) }
     <p class="section-desc reveal" data-delay="2">从单机智能体，走向联邦学习与企业级开放。</p>
     <div class="roadmap">
       <div class="r-item current reveal"><div class="ver">✅ 当前版本</div><h3>v2.3</h3><p class="r-done">声纹 · 语音 · 桌宠 · Memos · edgeTTS · Android 封装</p></div>
-      <div class="r-item reveal" data-delay="1"><div class="ver">🔲 下一站</div><h3>v2.5</h3><p class="r-todo">雷达 · WiFi 感知 · NPU 推理 · 轮足组装 · App Store</p></div>
+      <div class="r-item reveal" data-delay="1"><div class="ver">🔶 联调中</div><h3>v2.5</h3><p class="r-todo">雷达呼吸心率 · WiFi 姿态识别 · 跌倒报警联动 · NPU 推理 · App Store</p></div>
       <div class="r-item reveal" data-delay="2"><div class="ver">🔲 远期</div><h3>v3.0</h3><p class="r-todo">联邦学习 · 云同步 · 开放 API · 企业 Dashboard</p></div>
     </div>
   </div>
@@ -418,6 +420,4 @@ const cio=new IntersectionObserver(entries=>{
   });
 },{threshold:.5});
 document.querySelectorAll('[data-count]').forEach(el=>cio.observe(el));
-</script>
-</body>
-</html>
+</
