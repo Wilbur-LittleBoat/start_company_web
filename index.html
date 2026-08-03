@@ -20,7 +20,7 @@ body { font-family:"Inter",system-ui,-apple-system,"PingFang SC","Microsoft YaHe
 ::selection { background:rgba(76,242,212,.3); color:#fff }
 
 /* ── Scroll reveal ── */
-.reveal { opacity:0; transform:translateY(28px); transition:opacity .7s cubic-bezier(.22,.61,.36,1), transform .7s cubic-bezier(.22,.61,.36,1) }
+html.js .reveal { opacity:0; transform:translateY(28px); transition:opacity .7s cubic-bezier(.22,.61,.36,1), transform .7s cubic-bezier(.22,.61,.36,1) }
 .reveal.visible { opacity:1; transform:none }
 .reveal[data-delay="1"] { transition-delay:.08s } .reveal[data-delay="2"] { transition-delay:.16s }
 .reveal[data-delay="3"] { transition-delay:.24s } .reveal[data-delay="4"] { transition-delay:.32s }
@@ -387,6 +387,9 @@ tbody tr:hover { background:rgba(76,242,212,.04) }
 <button class="to-top" id="toTop" aria-label="回到顶部">↑</button>
 
 <script>
+// 标记 JS 可用：只有 JS 正常执行时才启用 reveal 隐藏初始态
+document.documentElement.classList.add('js');
+
 // Nav scroll effect + back-to-top
 const nav=document.getElementById('nav'),toTop=document.getElementById('toTop');
 window.addEventListener('scroll',()=>{
@@ -400,11 +403,15 @@ const menuBtn=document.getElementById('menuBtn'),mobileMenu=document.getElementB
 menuBtn.addEventListener('click',()=>mobileMenu.classList.toggle('open'));
 mobileMenu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>mobileMenu.classList.remove('open')));
 
-// Scroll reveal
-const io=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target);} });
-},{threshold:.12});
-document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+// Scroll reveal（带兜底：脚本异常或超时也保证内容可见）
+function revealAll(){ document.querySelectorAll('.reveal').forEach(e=>e.classList.add('visible')); }
+try {
+  const io=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target);} });
+  },{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  setTimeout(()=>{ if(document.querySelector('.reveal:not(.visible)')) revealAll(); },2500);
+} catch(err){ revealAll(); }
 
 // Animated counters
 const cio=new IntersectionObserver(entries=>{
