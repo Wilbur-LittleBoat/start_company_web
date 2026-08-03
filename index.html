@@ -123,12 +123,24 @@ h2.light { color:#fff }
 /* ── Light sections ── */
 .light-section { background:var(--bg-section) }
 
-/* ── Architecture ── */
-.arch-shell { position:relative; border-radius:var(--radius-xl); padding:1px; background:linear-gradient(135deg,rgba(76,242,212,.35),rgba(232,246,143,.2),rgba(76,242,212,.08)) }
-.arch { background:#101210; border-radius:calc(var(--radius-xl) - 1px); padding:42px 34px; overflow-x:auto; font-family:"SF Mono","Cascadia Code",Consolas,monospace; font-size:.82rem; line-height:1.85; white-space:pre; color:#d7e0dc; box-shadow:0 20px 60px rgba(0,0,0,.45) }
-.arch-bar { display:flex; gap:7px; margin-bottom:20px }
-.arch-bar i { width:11px; height:11px; border-radius:50%; display:block }
-.arch-bar i:nth-child(1){ background:#ff5f57 } .arch-bar i:nth-child(2){ background:#febc2e } .arch-bar i:nth-child(3){ background:#28c840 }
+/* ── Architecture (layered diagram) ── */
+.arch-flow { max-width:880px; margin:0 auto; display:flex; flex-direction:column }
+.a-layer { background:var(--glass-bg); border:1px solid var(--glass-border); border-radius:var(--radius); padding:24px 28px; backdrop-filter:blur(10px); display:flex; gap:24px; align-items:flex-start; transition:.3s; position:relative; overflow:hidden }
+.a-layer::before { content:""; position:absolute; left:0; top:0; bottom:0; width:3px; background:var(--grad); opacity:.55 }
+.a-layer:hover { border-color:rgba(76,242,212,.35); transform:translateY(-3px); box-shadow:0 16px 44px rgba(0,0,0,.35) }
+.a-tag { flex-shrink:0; width:92px; padding-top:4px }
+.a-tag .t-cn { font-size:.95rem; font-weight:800; color:#fff; letter-spacing:.02em }
+.a-tag .t-en { font-size:.68rem; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--mint); opacity:.85; margin-top:2px }
+.a-body { flex:1; min-width:0 }
+.a-title { font-size:.88rem; color:#e5e7eb; font-weight:600; margin-bottom:12px }
+.a-title b { color:var(--mint) }
+.a-chips { display:flex; flex-wrap:wrap; gap:8px }
+.chip { padding:6px 14px; border-radius:100px; font-size:.82rem; background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.1); color:#d7e0dc; transition:.2s; white-space:nowrap }
+.chip:hover { border-color:rgba(76,242,212,.4); background:rgba(76,242,212,.08); color:#fff }
+.chip.dim { border-style:dashed; color:#8b95a1; background:transparent }
+.chip.dim:hover { border-color:rgba(232,246,143,.4); background:rgba(232,246,143,.06); color:var(--lime) }
+.a-arrow { display:flex; align-items:center; justify-content:center; gap:10px; padding:8px 0; color:var(--mint); font-size:.82rem; font-weight:600; letter-spacing:.04em }
+.a-arrow::before,.a-arrow::after { content:""; flex:1; max-width:120px; height:1px; background:linear-gradient(90deg,transparent,rgba(76,242,212,.35),transparent) }
 
 /* ── Table ── */
 .table-shell { background:#fff; border:1px solid rgba(0,0,0,.05); border-radius:var(--radius); overflow:hidden; box-shadow:0 4px 24px rgba(0,0,0,.04); overflow-x:auto }
@@ -177,7 +189,8 @@ tbody tr:hover { background:rgba(76,242,212,.04) }
   .stats { margin-top:0; padding-top:8px }
   .stats-wrap { padding-top:56px }
   .cards { grid-template-columns:1fr }
-  .arch { padding:28px 18px; font-size:.72rem }
+  .a-layer { flex-direction:column; gap:12px; padding:20px 22px }
+  .a-tag { width:auto; display:flex; align-items:baseline; gap:10px }
   .scroll-hint { display:none }
 }
 </style>
@@ -272,23 +285,42 @@ tbody tr:hover { background:rgba(76,242,212,.04) }
     <div class="section-label reveal">技术架构</div>
     <h2 class="light reveal" data-delay="1">从感知到决策，端到端闭环</h2>
     <p class="section-desc reveal" data-delay="2">交互层、AI 决策层、硬件执行层、物理层，四层解耦。</p>
-    <div class="arch-shell reveal" data-delay="2"><div class="arch"><div class="arch-bar"><i></i><i></i><i></i></div>┌──────────────────────────────────────────────────────┐
-│           KunPeng-Hermes Fusion v2.3                 │
-├──────────────────────────────────────────────────────┤
-│ 交互层:   📱 Android App  🖥️ Web桌宠  💬 CLI  🎤 语音  │
-│                       ↕ WebSocket :8765              │
-├──────────────────────────────────────────────────────┤
-│ AI 决策:  🧠 三层记忆+FTS5  🎯 Skill自动创建          │
-│           🔄 自进化引擎    📋 Memos笔记               │
-│           🎤 CAM++声纹    🗣️ SenseVoice+KWS          │
-│           📷 Kimi k2视觉  🔊 edge-tts自然语音         │
-├──────────────────────────────────────────────────────┤
-│ 硬件执行:  GPIO·I2C·UART·PWM·Camera·Motor·Servo      │
-├──────────────────────────────────────────────────────┤
-│ 物理层:    OrangePi Kunpeng Pro (RK3588, 16GB)       │
-│ 外设:      摄像头·4通道MIC·USB扬声器·FT2232 UART×2    │
-│ 预留:      毫米波雷达 🔲  WiFi CSI 🔲  NPU推理 🔲     │
-└──────────────────────────────────────────────────────┘</div></div>
+    <div class="arch-flow reveal" data-delay="2">
+      <div class="a-layer">
+        <div class="a-tag"><div class="t-cn">交互层</div><div class="t-en">Interaction</div></div>
+        <div class="a-body"><div class="a-chips">
+          <span class="chip">📱 Android App</span><span class="chip">🖥️ Web 桌宠</span><span class="chip">💬 CLI</span><span class="chip">🎤 语音</span>
+        </div></div>
+      </div>
+      <div class="a-arrow">↕ WebSocket :8765</div>
+      <div class="a-layer">
+        <div class="a-tag"><div class="t-cn">AI 决策</div><div class="t-en">Intelligence</div></div>
+        <div class="a-body"><div class="a-chips">
+          <span class="chip">🧠 三层记忆 + FTS5</span><span class="chip">🎯 Skill 自动创建</span><span class="chip">🔄 自进化引擎</span><span class="chip">📋 Memos 笔记</span>
+          <span class="chip">🎤 CAM++ 声纹</span><span class="chip">🗣️ SenseVoice + KWS</span><span class="chip">📷 Kimi k2 视觉</span><span class="chip">🔊 edge-tts 自然语音</span>
+        </div></div>
+      </div>
+      <div class="a-arrow">↓</div>
+      <div class="a-layer">
+        <div class="a-tag"><div class="t-cn">硬件执行</div><div class="t-en">HAL</div></div>
+        <div class="a-body"><div class="a-chips">
+          <span class="chip">GPIO</span><span class="chip">I2C</span><span class="chip">UART</span><span class="chip">PWM</span><span class="chip">Camera</span><span class="chip">Motor</span><span class="chip">Servo</span>
+        </div></div>
+      </div>
+      <div class="a-arrow">↓</div>
+      <div class="a-layer">
+        <div class="a-tag"><div class="t-cn">物理层</div><div class="t-en">Hardware</div></div>
+        <div class="a-body">
+          <div class="a-title"><b>OrangePi Kunpeng Pro</b> · RK3588 · 16GB</div>
+          <div class="a-chips" style="margin-bottom:10px">
+            <span class="chip">📷 摄像头</span><span class="chip">🎤 4 通道 MIC</span><span class="chip">🔊 USB 扬声器</span><span class="chip">🔌 FT2232 UART ×2</span>
+          </div>
+          <div class="a-chips">
+            <span class="chip dim">毫米波雷达 · 预留</span><span class="chip dim">WiFi CSI · 预留</span><span class="chip dim">NPU 推理 · 预留</span>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
